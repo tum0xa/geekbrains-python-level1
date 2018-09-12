@@ -30,7 +30,7 @@ def handler(line):
     :param line: строка из ведомости
     :return: кортеж (ИМЯ_СОТРУДНИКА, Зарплата_в_рублях)
     """
-    person, dummy, salary = line.split(' ')
+    person, _, salary = line.split(' ')
     return person.upper(), int(salary)
 
 
