@@ -6,10 +6,15 @@
 # квадратами элементов исходного списка
 # [1, 2, 4, 0] --> [1, 4, 16, 0]
 
+from random import randint
 
-origin_list = [1, 2, 4, 0]
+# Генерируем случайный список из 20 элементов
+origin_list = [randint(0, 20) for i in range(0, 20)]
+
+# Генерируем список из квадратов чисел вышесгенерированного списка
 new_list = [x**2 for x in origin_list]
 
+# Выводим оба списка
 print(origin_list)
 print(new_list)
 
@@ -18,9 +23,16 @@ print(new_list)
 # Даны два списка фруктов.
 # Получить список фруктов, присутствующих в обоих исходных списках.
 
+
+# Определяем 2 списка фруктов
 fruit_list_1 = ['яблоко', 'банан', 'арбуз', 'киви', 'ананас']
 fruit_list_2 = ['киви', 'груша', 'апельсин', 'арбуз', 'виноград', 'ананас']
+
+# Генерируем список состоящий из пересекающих элементов в списках фруктов
+# fruit_list = [x & y for x in set(fruit_list_1) for y in set(fruit_list_2)]
 fruit_list = [x for x in (set(fruit_list_1) & set(fruit_list_2))]
+
+# Выводим на экран все списки фруктов
 print(fruit_list_1)
 print(fruit_list_2)
 print(fruit_list)
@@ -32,3 +44,12 @@ print(fruit_list)
 # + Элемент кратен 3
 # + Элемент положительный
 # + Элемент не кратен 4
+
+
+# Генерируем случайный список из 20 элементов
+origin_list = [randint(-100, 100) for i in range(0, 20)]
+# Генерируем список из тех чисел списка origin_list, которые удовлетворяют условиям указанных выше
+new_list = [x for x in origin_list if (x % 3 == 0 or x % 4 != 0) and x >= 0]
+
+print(origin_list)
+print(new_list)
