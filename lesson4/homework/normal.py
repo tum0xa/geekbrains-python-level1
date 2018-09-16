@@ -35,10 +35,10 @@ if email:
     a_pattern = '@'
     domain = re.findall(d_pattern, email)
     domains = ['.ru', '.org', '.com']
-    x = re.findall(pattern, email)
+    x = re.match(pattern, email)
     err_msg = []
     if x:
-        print('E-mail указан верно')
+        print('E-mail указан верно!')
     else:
         print('E-mail указан неверно ', end='')
         if re.search(t_pattern, email):
