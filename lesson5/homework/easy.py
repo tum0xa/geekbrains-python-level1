@@ -25,7 +25,13 @@ def delete_dir_by_path(path):
         print(f'Директория {path} успешно удалена.')
 
 
-
+def print_list_dir_by_path(path):
+    objects = os.listdir(path)
+    # if os.getcwd() == path:
+    print(f'Список директорий в папке {path}{os.path.sep}: ')
+    for obj in objects:
+        if os.path.isdir(obj):
+            print(obj)
 
 
 if __name__ == '__main__':
@@ -47,6 +53,10 @@ if __name__ == '__main__':
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
 
+    print_list_dir_by_path(os.getcwd())
+    input('Чтобы  продолжить нажмите любую кнопку.')
+
 
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+
