@@ -8,23 +8,37 @@ def create_dir_by_path(path):
         print(f'{path} - директория/файл по данномму пути уже существует!')
     else:
         print(f'Директория {path} успешно создана.')
-
+    print()
 
 def delete_dir_by_path(path):
     try:
-        os.rmdir(dir_path)
+        os.rmdir(path)
     except FileNotFoundError:
         print(f'{path} - директории по данному пути не существует!')
     else:
         print(f'Директория {path} успешно удалена.')
+    print()
 
-
-def print_list_dir_by_path(path):
+def print_list_dir_by_path(path, only_dir=False):
     objects = os.listdir(path)
-    print(f'Список директорий в папке {path}{os.path.sep}: ')
-    for obj in objects:
-        if os.path.isdir(obj):
-            print(obj)
+    print('Список', 'директорий' if only_dir else 'элементов', f'в папке {path}{os.path.sep}:\n')
+    if objects:
+        for obj in objects:
+            if only_dir and os.path.isdir(obj):
+                print(obj)
+            else:
+                print(obj)
+    else:
+        print('Текущая папка пустая!')
+    print()
+
+
+def change_cur_dir_by_path(path):
+    if os.path.exists(path) and not os.path.isfile(path):
+        os.chdir(path)
+    else:
+        print('Указанной папки не существует!')
+    print()
 
 
 if __name__ == '__main__':
@@ -50,7 +64,7 @@ if __name__ == '__main__':
     # Задача-2:
     # Напишите скрипт, отображающий папки текущей директории.
 
-    print_list_dir_by_path(os.getcwd())
+    print_list_dir_by_path(os.getcwd(), only_dir=True)
     input('Чтобы  продолжить нажмите "Enter".')
 
     # Задача-3:
