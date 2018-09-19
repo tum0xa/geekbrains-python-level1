@@ -59,13 +59,18 @@ if __name__ == '__main__':
     cur_file_name = sys.argv[0]
     new_file_name = '_copy.'.join(cur_file_name.split('.'))
 
+    # if not os.path.exists(new_file_name):
     with open(cur_file_name) as src:
-        for line in src:
-            with open(new_file_name, 'a') as dst:
-                dst.write(line)
+        # for line in src:
+        #     with open(new_file_name, 'a') as dst:
+        #         dst.write(line)
+        with open(new_file_name, 'w') as dst:
+            dst.writelines(src.readlines())
     if os.path.exists(new_file_name) and os.path.isfile(new_file_name):
         print(f'Файл {cur_file_name} успешно скопирован в {new_file_name}!')
     else:
-        print('Не удалось скопировать файл!')
+        print('Не удалось скопировать файл! Неизвестная ошибка!')
+    # else:
+    #     print('Не удалось скопировать файл! Возможно файл уже существует!')
 
     input('Чтобы  продолжить нажмите "Enter".')
