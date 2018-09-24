@@ -61,18 +61,10 @@ class Battle:
     def __init__(self, participants):
         self.participants = participants
 
-    def choose_attacker(self):
-        attacker = choice(self.participants)
-        return attacker
-
-    def choose_victim(self):
-        victim = choice(self.participants)
-        return victim
-
     def battle(self):
         while len(self.participants) > 1:
-            attacker = self.choose_attacker()
-            victim = self.choose_victim()
+            attacker = choice(self.participants)
+            victim = choice(self.participants)
 
             attacker.attack(victim)
 
@@ -82,6 +74,7 @@ class Battle:
         else:
             print('Битва завершилась!')
             return participants[0]
+
 
 if __name__ == '__main__':
 
