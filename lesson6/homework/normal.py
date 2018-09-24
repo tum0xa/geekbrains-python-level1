@@ -11,6 +11,15 @@
 # Вам надо описать игровой цикл так же через класс.
 # Создайте экземпляры классов, проведите бой. Кто будет атаковать первым оставляю на ваше усмотрение.
 
+from random import choice
+
+
+def set_random_name():
+    name = ''
+    for _ in range(10):
+        name += str(chr(randint(65, 90)))
+    return name
+
 
 class Person:
 
@@ -47,30 +56,66 @@ class Enemy(Person):
     pass
 
 
+class Battle:
+
+    def __init__(self, participants):
+        self.participants = participants
+
+    def choose_attacker(self):
+        attacker = choice(self.participants)
+        return attacker
+
+    def choose_victim(self):
+        victim = choice(self.participants)
+        return victim
+
+    def battle(self):
+        while len(self.participants) > 1:
+            attacker = self.choose_attacker()
+            victim = self.choose_victim()
+
+            attacker.attack(victim)
+
+            if victim.health <= 0:
+                print(f'{victim.name} пал в этой эпичной битве!')
+                self.participants.pop(self.participants.index(victim))
+        else:
+            print('Битва завершилась!')
+            return participants[0]
+
 if __name__ == '__main__':
 
     from random import randint
+    participants = []
+    for _ in range(randint(2, 10)):
+        person = Person(set_random_name(), health=randint(100, 500), damage=randint(20, 100), armor=randint(1, 100))
+        participants.append(person)
+    # print(participants)
+    my_epic_battle = Battle(participants)
 
-    player = Player('Lolo', health=randint(100, 500), damage=randint(20, 100), armor=randint(1, 100))
-    enemy = Enemy('Spider', health=randint(50, 1000), damage=randint(20, 200), armor=randint(1, 100))
+    winner = my_epic_battle.battle()
 
-    attacker = None
-    victim = None
+    # player = Player('Lolo', health=randint(100, 500), damage=randint(20, 100), armor=randint(1, 100))
+    # enemy = Enemy('Spider', health=randint(50, 1000), damage=randint(20, 200), armor=randint(1, 100))
 
-    while True:
+    # attacker = None
+    # victim = None
+    #
+    # while True:
+    #
+    #     if attacker == player:
+    #         attacker = enemy
+    #         victim = player
+    #     else:
+    #         attacker = player
+    #         victim = enemy
+    #
+    #     attacker.attack(victim)
+    #
+    #     if victim.health <= 0:
+    #         print(f'{victim.name} погиб с честью.')
+    #         break
 
-        if attacker == player:
-            attacker = enemy
-            victim = player
-        else:
-            attacker = player
-            victim = enemy
 
-        attacker.attack(victim)
-
-        if victim.health <= 0:
-            print(f'{victim.name} погиб с честью.')
-            break
-
-    print(f'Победил {attacker.name}! Осталось {attacker.health} очков здоровья.')
+    print(f'Победил {winner.name}! Осталось {winner.health} очков здоровья.')
     input()
