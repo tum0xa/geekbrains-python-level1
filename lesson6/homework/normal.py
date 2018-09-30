@@ -61,18 +61,10 @@ class Battle:
     def __init__(self, participants):
         self.participants = participants
 
-    def choose_attacker(self):
-        attacker = choice(self.participants)
-        return attacker
-
-    def choose_victim(self):
-        victim = choice(self.participants)
-        return victim
-
     def battle(self):
         while len(self.participants) > 1:
-            attacker = self.choose_attacker()
-            victim = self.choose_victim()
+            attacker = choice(self.participants)
+            victim = choice(self.participants)
 
             attacker.attack(victim)
 
@@ -83,11 +75,12 @@ class Battle:
             print('Битва завершилась!')
             return participants[0]
 
+
 if __name__ == '__main__':
 
     from random import randint
     participants = []
-    for _ in range(randint(2, 10)):
+    for _ in range(randint(2, 100)):
         person = Person(set_random_name(), health=randint(100, 500), damage=randint(20, 100), armor=randint(1, 100))
         participants.append(person)
     # print(participants)
