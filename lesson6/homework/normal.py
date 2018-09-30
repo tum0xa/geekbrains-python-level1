@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
     from random import randint
     participants = []
-    for _ in range(randint(2, 10)):
+    for _ in range(randint(2, 100)):
         person = Person(set_random_name(), health=randint(100, 500), damage=randint(20, 100), armor=randint(1, 100))
         participants.append(person)
     # print(participants)
